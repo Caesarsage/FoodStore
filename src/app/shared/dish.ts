@@ -6,5 +6,13 @@ export class IDish {
   featured: boolean;
   label: string;
   price: string;
-  description: string
+  description: string;
+  comments: IComment[];
+}
+
+export class IComment {
+  rating?: number;
+  comment: string;
+  author: string;
+  date: string;
 }
