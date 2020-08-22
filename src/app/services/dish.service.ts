@@ -12,4 +12,12 @@ export class DishService {
   getDishes(): IDish[]{
     return DISHES
   }
+
+  getDish(id:string): IDish{
+    return DISHES.filter((dish)=> (dish.id === id))[0];
+  }
+
+  getFeaturedDish(): IDish{
+    return DISHES.filter((dish) => dish.featured)[0]
+  }
 }
