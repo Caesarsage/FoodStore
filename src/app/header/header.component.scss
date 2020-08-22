@@ -1,5 +1,6 @@
 $lt-gray: #ddd;
 $background-dark: #512DA8;
+$background-moredark: #4527A0;
 $background-light: #9575CD;
 $background-pale: #D1C4E9;
 $primary-color-dark: #512DA8;
@@ -17,11 +18,14 @@ $divider-color: #bdbdbd;
 
 .jumbotron{
   @include zero-margin(70px, 30px);
-  background-color: $background-light;
+  background: $background-light;
   color: floralwhite;
   min-height: 150px;
 }
 mat-toolbar{
   background-color:  $background-dark;
   color: floralwhite;
+}
+.active{
+  background: $background-moredark;
 }
