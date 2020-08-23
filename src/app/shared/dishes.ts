@@ -12,12 +12,6 @@ export const DISHES: IDish[] = [
       description:'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.',
       comments: [
         {
-          rating: 5,
-          comment: "Imagine all the eatables, living in confusion!",
-          author: "John Lemon",
-          date: "2012-10-16T17:57:28.556094Z",
-        },
-        {
           rating: 4,
           comment: "Send anyone to heaven, I wish i could get my mother-in-law to eat it!",
           author: "Paul Lemon",
