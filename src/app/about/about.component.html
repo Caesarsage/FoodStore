@@ -60,14 +60,14 @@
     <mat-list *ngIf="leaders">
       <mat-list-item *ngFor="let leader of leaders">
         <img mat-list-avatar [src]="leader.image" alt={{leader.name}}>
-        <h4 matLine>
-          <span>
-            {{leader.name}}  {{leader.abbr}}
-          </span>
-        </h4>
-        <h4 matLine>{{leader.designation}}</h4>
+        <h4 matLine>  {{leader.name}}  {{leader.abbr}}</h4>
+        <p matLine>{{leader.designation}}</p>
         <p matLine>{{leader.description}}</p>
       </mat-list-item>
     </mat-list>
+
+  </div>
+  <div fxFlex [hidden]="leaders">
+    <mat-spinner></mat-spinner> <h4>Loading . . . Please Wait</h4>
   </div>
 </div>
