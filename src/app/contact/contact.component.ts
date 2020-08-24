@@ -11,7 +11,6 @@ export class ContactComponent implements OnInit {
   feedbackForm: FormGroup;
   feedback: IFeedback;
   contactType = ConctactType;
-
   @ViewChild('fform') feedbackFormDirective; // to ensure the form is completely reset
 
   constructor(private fb: FormBuilder){
