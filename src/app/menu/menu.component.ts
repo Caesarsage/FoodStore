@@ -22,6 +22,5 @@ export class MenuComponent implements OnInit {
   onSelect(dish) {
     this.selectedDish = dish;
   }
-
 }
 
