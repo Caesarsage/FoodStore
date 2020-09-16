@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IDish } from "../shared/dish";
-import { Observable, of } from 'rxjs';
-import { delay, map } from "rxjs/operators";
+import { Observable } from 'rxjs';
+import { map } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { baseURL } from "../shared/baseurl";
 
@@ -31,5 +31,5 @@ export class DishService {
       map(dishes => dishes.map(dish => dish.id)
     ));
   }
-  
+
 }
