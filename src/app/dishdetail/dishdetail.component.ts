@@ -18,6 +18,7 @@ export class DishdetailComponent implements OnInit {
   dishIds: string[];
   prev: string;
   next: string;
+  
   errMessage: string;
   visibility = 'shown'
 
