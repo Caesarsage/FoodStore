@@ -6,7 +6,7 @@
           <h3>{{dish.name |uppercase}}</h3>
         </mat-card-title>
       </mat-card-header>
-      <img mat-card-image src={{dish.image}} alt={{dish.name}}>
+      <img mat-card-image src="{{BaseURL + dish.image}}" alt={{dish.name}}>
       <mat-card-content>
         <p>{{dish.description}}</p>
       </mat-card-content>
@@ -25,7 +25,7 @@
     </mat-card>
   </div>
 
-  <div fxFlex="40" *ngIf="dish">
+  <div fxFlex="40" [@visibility]="visibility" *ngIf="dish">
     <mat-list >
         <h3>Comments</h3>
       <mat-list-item *ngFor="let comment of dish.comments">
@@ -38,11 +38,50 @@
           </span>
           </p>
       </mat-list-item>
+      <mat-list-item *ngIf="this.commentsForm.valid">
+        <h4 matLine>{{commentsForm.value.author}}</h4>
+         <p matLine>{{commentsForm.value.rating}} Stars</p>
+         <p matLine> --
+             {{commentsForm.value.comment}}
+         </p>
+     </mat-list-item>
     </mat-list>
+
+    <form novalidate [formGroup]="commentsForm" (submit)="onSubmit()" #fform="ngForm">
+      <p>
+        <mat-form-field>
+          <input matInput name="author" formControlName="author" type="text" placeholder="Name" required>
+          <mat-error *ngIf="formErrors.author">
+            {{formErrors.author}}
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-slider thumbLabel tickInterval="2" step="1"
+            min="1" max="5"  value="5"
+            formControlName="rating">
+        </mat-slider>
+      </p>
+      <p>
+        <mat-form-field class="full-width">
+          <textarea name="comment" matInput rows="12"
+          formControlName="comment" required>
+          </textarea>
+          <mat-error *ngIf="formErrors.comment">
+            {{formErrors.comment}}
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <button type="submit" mat-button class="background-primary text-floral-white"
+      [disabled]="commentsForm.invalid"> Submit</button>
+    </form>
   </div>
 
   <div fxFlex [hidden]="dish">
     <mat-spinner></mat-spinner> <h4>Loading . . . Please Wait</h4>
   </div>
 
+  <div>
+
+  </div>
 </div>

@@ -5,8 +5,9 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import {
     MatToolbarModule, MatListModule, MatGridListModule, MatCardModule,MatButtonModule,
     MatDialogModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatSelectModule,
-    MatSlideToggleModule, MatProgressSpinnerModule} from '@angular/material';
+    MatSlideToggleModule, MatProgressSpinnerModule, MatSliderModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -25,6 +26,8 @@ import { AppRoutingModule } from "./app-routing/app-routing.module";
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
 import { LoginComponent } from './login/login.component';
+
+import { baseURL } from "./shared/baseurl";
 
 @NgModule({
   declarations: [
@@ -55,8 +58,10 @@ import { LoginComponent } from './login/login.component';
     MatSelectModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
+    MatSliderModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   entryComponents: [
     LoginComponent
@@ -64,7 +69,8 @@ import { LoginComponent } from './login/login.component';
   providers: [
     DishService,
     PromotionService,
-    LeaderService
+    LeaderService,
+    {provide: 'BaseURL', useValue: baseURL}
   ],
   bootstrap: [AppComponent]
 })

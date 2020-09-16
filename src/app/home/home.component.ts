@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { IDish } from "../shared/dish";
 import { DishService } from "../services/dish.service";
 import { IPromotion } from "../shared/promotion";
@@ -18,7 +18,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private dishService:DishService,
               private promotionService: PromotionService,
-              private leaderService: LeaderService) { }
+              private leaderService: LeaderService,
+              @Inject('BaseURL') private BaseURL) { }
 
   ngOnInit() {
     this.dishService.getFeaturedDish()
