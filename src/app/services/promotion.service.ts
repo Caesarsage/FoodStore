@@ -4,13 +4,17 @@ import { PROMOTIONS } from "../shared/promotions";
 import { resolve } from 'url';
 import { of, Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { baseURL } from "../shared/baseurl";
+import { ProcessHTTPMsgService } from "./process-httpmsg.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PromotionService {
 
-  constructor() { }
+  constructor(private http: HttpClient,
+              private processHTTPMsgService: ProcessHTTPMsgService) { }
 
   getPromotions(): Observable<IPromotion[]>{
     return of(PROMOTIONS).pipe(delay(2000));
