@@ -14,11 +14,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class DishdetailComponent implements OnInit {
   dish:IDish;
-  dishcopy: IDish;
   dishIds: string[];
   prev: string;
   next: string;
-  
+
+  dishcopy: IDish;
   errMessage: string;
   visibility = 'shown'
 
@@ -45,10 +45,7 @@ export class DishdetailComponent implements OnInit {
               private location: Location,
               private route:ActivatedRoute,
               private fb: FormBuilder,
-              @Inject('BaseURL') private BaseURL
-             ) {
-                this.createForm();
-              }
+              @Inject('BaseURL') private BaseURL) {this.createForm();}
 
   createForm(){
     this.commentsForm = this.fb.group({
@@ -85,21 +82,9 @@ export class DishdetailComponent implements OnInit {
     }
   }
 
-  onSubmit(){
-    this.commentI = this.commentsForm.value;
-    this.commentI.date = new Date().toISOString();
-    this.dishcopy.comments.push(this.commentI);
-    console.log(this.commentI);
-    this.commentsForm.reset({
-      authir: '',
-      comment: ' ',
-      rating: 5
-    });
-    this.commentsFormDirective.resetForm();
-  }
-
-
   ngOnInit() {
+    this.createForm();
+
     this.dishservice.getDishIds()
       .subscribe((dishIds) => this.dishIds = dishIds);
     this.route.params.pipe(switchMap((params: Params) => {
@@ -126,4 +111,27 @@ export class DishdetailComponent implements OnInit {
   goBack(): void{
     this.location.back();
   }
+
+  onSubmit(){
+    this.commentI = this.commentsForm.value;
+    this.commentI.date = new Date().toISOString();
+    this.dishcopy.comments.push(this.commentI);
+    console.log(this.commentI);
+
+    this.dishservice.putDish(this.dishcopy).subscribe(dish=>{
+      this.dish = dish; this.dishcopy = dish
+    },
+    errmess => {
+      this.dish = null,
+      this.dishcopy = null,
+      this.errMessage = errmess
+    })
+    this.commentsFormDirective.resetForm();
+    this.commentsForm.reset({
+      author: '',
+      comment: ' ',
+      rating: 5
+    });
+  }
+
 }
